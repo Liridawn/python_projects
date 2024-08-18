@@ -74,12 +74,24 @@ def choose_game():
 
 def choose_code(game):
     list_code_hg = ['Steal pokemon', 'Rare candy', 'All balls', 'Max items']
-    list_code_plat = ['Steal pokemon']
-    list_code_black = ['Steal pokemon', 'Exp Share']
+    list_code_platinum = ['Steal pokemon', 'Place holder', 'Place holder 2']
+    list_code_black = ['Steal pokemon', 'Exp Share', 'Place holder']
+
+    list_dict = {
+        1: list_code_hg,
+        2: list_code_platinum,
+        3: list_code_black
+    }
+
+    game_selected = list_dict[game]
     
-    for number, option in enumerate(list_code_hg, 1):
-        print(f"{number}: {option}")
+    if 1 <= game <= 3:
+        for number, option in enumerate(game_selected, 1):
+            print(f"{number}: {option}")
     
+    # Behöver lägga till en if-sats som väljer koder från rätt lista, just nu väljer man bara från lista 1, "hg"
+    # Eller köra en till funktion för att dela upp lite.. Exempelvis Välj spel -> välj hur jag vill konvertera koden -> konvertera koden
+
     try:
         choose_code = int(input("Number 1-4? ").strip())
         if 1 <= choose_code <= 4:
