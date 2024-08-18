@@ -1,17 +1,17 @@
 import pyperclip
 
 # HearGold-codes
-steal_pokemon_code = "9224670a 00002101 1224670a 00002100 d2000000 00000000"
+steal_hg = "9224670a 00002101 1224670a 00002100 d2000000 00000000"
 rare_candy = "94000130 FCFF0000 B2111880 00000000 E0000B74 000000A0 03E70032 00000000 D2000000 00000000"
 all_balls = "94000130 fcff0000 62111880 00000000 b2111880 00000000 d5000000 00000384 c0000000 00000017 d7000000 00000d16 dc000000 00000002 d2000000 00000000 94000130 fcff0000 62111880 00000000 b2111880 00000000 d5000000 00000001 c0000000 0000000f d7000000 00000d14 d4000000 00000001 dc000000 00000002 d2000000 00000000 94000130 fcff0000 62111880 00000000 b2111880 00000000 d5000000 000001ec c0000000 00000007 d7000000 00000d54 d4000000 00000001 dc000000 00000002 d2000000 00000000"
 max_items = "94000130 fcff0000 62111880 00000000 b2111880 00000000 d5000000 00000384 c0000000 000000a1 d7000000 00000656 dc000000 00000002 d2000000 00000000 94000130 fcff0000 62111880 00000000 b2111880 00000000 10000708 00000087 1000070c 00000088d5000000 00000044c0000000 0000002cd7000000 00000654d4000000 00000001dc000000 00000002d2000000 0000000094000130 fcff000062111880 00000000b2111880 00000000d5000000 000000d5c0000000 00000072d7000000 00000710dc000000 00000002d4000000 00000001d2000000 00000000"
 
 # Platinum-codes
-steal_trainer_pokemon = "92249cde 00002101 12249cde 00002100 d2000000 00000000"
+steal_platinum = "92249cde 00002101 12249cde 00002100 d2000000 00000000"
 
 # Pokemon black
-exp_share = "521CB43C 42819903 121CB440 000046C0 D2000000 00000000"
 steal_black = "521CBAAC 2F06D134 121CBAAC 0000E001 121CBAE6 00002001 121CBACC 00002000 D2000000 00000000"
+exp_share = "521CB43C 42819903 121CB440 000046C0 D2000000 00000000"
 
 def main():
     while True:
@@ -89,19 +89,39 @@ def choose_code(game):
         for number, option in enumerate(game_selected, 1):
             print(f"{number}: {option}")
     
-    # Behöver lägga till en if-sats som väljer koder från rätt lista, just nu väljer man bara från lista 1, "hg"
-    # Eller köra en till funktion för att dela upp lite.. Exempelvis Välj spel -> välj hur jag vill konvertera koden -> konvertera koden
-
-    try:
-        choose_code = int(input("Number 1-4? ").strip())
-        if 1 <= choose_code <= 4:
-            codes = [steal_pokemon_code, rare_candy, all_balls, max_items]
-            code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
-            code_converter(codes[choose_code - 1], code_conversion_option)
+        if game == 1:
+            try:
+                choose_code = int(input("Number 1-4? ").strip())
+                if 1 <= choose_code <= 4:
+                    codes = [steal_hg, rare_candy, all_balls, max_items]
+                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_converter(codes[choose_code - 1], code_conversion_option)
+                else:
+                    print(f"Invalid number, please choose between {int(len(list_code_hg))-int(len(list_code_hg+1))} and {len(list_code_hg)}.")
+            except ValueError:
+                print(f"Invalid input, please enter a number between {int(len(list_code_hg))-int(len(list_code_hg+1))} and {len(list_code_hg)}.")
+        elif game == 2:
+            try:
+                choose_code = int(input("Number 1-3? ").strip())
+                if 1 <= choose_code <= 3:
+                    codes = [steal_platinum]
+                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_converter(codes[choose_code - 1], code_conversion_option)
+                else:
+                    print(f"Invalid number, please choose between {int(len(list_code_platinum))-int(len(list_code_platinum+1))} and {len(list_code_platinum)}.")
+            except ValueError:
+                print(f"Invalid input, please enter a number between {int(len(list_code_platinum))-int(len(list_code_platinum+1))} and {len(list_code_platinum)}.")
+        elif game == 3:
+            try:
+                choose_code = int(input("Number 1-3? ").strip())
+                if 1 <= choose_code <= 3:
+                    codes = [steal_black, exp_share]
+                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_converter(codes[choose_code - 1], code_conversion_option)
+            except ValueError:
+                print(f"Invalid input, please enter a number between {int(len(list_code_black))-int(len(list_code_black+1))} and {len(list_code_black)}.")
         else:
-            print("Invalid number, please choose between 1 and 4.")
-    except ValueError:
-        print("Invalid input, please enter a number between 1 and 4.")
+            print("Something went wrong.")
 
 def code_converter(x, conversion_type):
     try:
