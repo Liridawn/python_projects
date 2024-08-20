@@ -67,7 +67,7 @@ def choose_game():
                     choose_code(choose_game_option)
                     break
             else:
-                print(f"Invalid number, please choose between {int(len(list_of_games))-int(len(list_of_games))+1} and {len(list_of_games)}")
+                print(f"Invalid number, please choose between 1 and {len(list_of_games)}")
         except ValueError:
             print("Invalid input, please enter a number between 1 and 3.")
 
@@ -91,35 +91,35 @@ def choose_code(game):
     
         if game == 1:
             try:
-                choose_code = int(input("Number 1-4? ").strip())
+                choose_code = int(input(f"Number 1-{len(list_code_hg)}? ").strip())
                 if 1 <= choose_code <= 4:
                     codes = [steal_hg, rare_candy, all_balls, max_items]
                     code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
                     code_converter(codes[choose_code - 1], code_conversion_option)
                 else:
-                    print(f"Invalid number, please choose between {int(len(list_code_hg))-int(len(list_code_hg+1))} and {len(list_code_hg)}.")
+                    print(f"Invalid number, please choose between 1 and {len(list_code_hg)}.")
             except ValueError:
-                print(f"Invalid input, please enter a number between {int(len(list_code_hg))-int(len(list_code_hg+1))} and {len(list_code_hg)}.")
+                print(f"Invalid input, please enter a number between 1 and {len(list_code_hg)}.")
         elif game == 2:
             try:
-                choose_code = int(input("Number 1-3? ").strip())
+                choose_code = int(input(f"Number 1-{len(list_code_platinum)}? ").strip())
                 if 1 <= choose_code <= 3:
                     codes = [steal_platinum]
                     code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
                     code_converter(codes[choose_code - 1], code_conversion_option)
                 else:
-                    print(f"Invalid number, please choose between {int(len(list_code_platinum))-int(len(list_code_platinum+1))} and {len(list_code_platinum)}.")
+                    print(f"Invalid number, please choose between 1 and {len(list_code_platinum)}.")
             except ValueError:
-                print(f"Invalid input, please enter a number between {int(len(list_code_platinum))-int(len(list_code_platinum+1))} and {len(list_code_platinum)}.")
+                print(f"Invalid input, please enter a number between 1 and {len(list_code_platinum)}.")
         elif game == 3:
             try:
-                choose_code = int(input("Number 1-3? ").strip())
+                choose_code = int(input(f"Number 1-{len(list_code_black)}? ").strip())
                 if 1 <= choose_code <= 3:
                     codes = [steal_black, exp_share]
                     code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
                     code_converter(codes[choose_code - 1], code_conversion_option)
             except ValueError:
-                print(f"Invalid input, please enter a number between {int(len(list_code_black))-int(len(list_code_black+1))} and {len(list_code_black)}.")
+                print(f"Invalid input, please enter a number between 1 and {len(list_code_black)}.")
         else:
             print("Something went wrong.")
 
