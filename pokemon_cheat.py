@@ -40,9 +40,9 @@ def get_option():
                     print("Take care!")
                     exit()
             else:
-                print("Invalid number, please choose between 1 and 3.")
+                print(f"Invalid number, please choose between 1 and {len(list_of_options)}.")
         except ValueError:
-            print("Invalid input, please enter a number between 1 and 3.")
+            print(f"Invalid input, please enter a number between 1 and {len(list_of_options)}.")
 
 def choose_game():
     list_of_games = ['HeartGold', 'Platinum', 'Black']
