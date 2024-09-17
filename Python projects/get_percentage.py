@@ -1,8 +1,8 @@
 def main():
-    first = int(input("First: "))
-    second = int(input("Second: "))
+    a = int(input("A: "))
+    b = int(input("B: "))
 
-    get_percentage(first, second)
+    get_percentage(a, b)
 
 def get_percentage(a, b):
     percent = (a / b) * 100 
