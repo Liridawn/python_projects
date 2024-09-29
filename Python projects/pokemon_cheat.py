@@ -13,6 +13,11 @@ steal_platinum = "92249cde 00002101 12249cde 00002100 d2000000 00000000"
 steal_black = "521CBAAC 2F06D134 121CBAAC 0000E001 121CBAE6 00002001 121CBACC 00002000 D2000000 00000000"
 exp_share = "521CB43C 42819903 121CB440 000046C0 D2000000 00000000"
 
+# Pokemon black 2
+steal_black_2 = "521AF628 2F06D134 121AF628 0000E001 121AF662 00002001 121AF648 00002000 D2000000 00000000"
+exp_share_2 = "521AEF84 42819903 121AEF88 000046C0 D2000000 00000000"
+all_items_2 = "94000130 fcff0000 b2000024 00000000 e001915c 00000054 03840074 03840075 03840076 03840077 0384023b 0384023c 0384023d 0384023f 03840240 03840241 03840244 03840245 03840246 03840247 03840248 03840249 0384024a 0384024b 0384024c 0384024d 0384024e 00000000 d5000000 03840001 c0000000 0000000f d6000000 00018d20 d4000000 00000001 d2000000 00000000 94000130 fcff0000 b2000024 00000000 d5000000 03840037 c0000000 00000039 d6000000 00018d60 d4000000 00000001 d2000000 00000000 94000130 fcff0000 b2000024 00000000 d5000000 03840087 c0000000 0000000d d6000000 00018e48 d4000000 00000001 d2000000 00000000 94000130 fcff0000 b2000024 00000000 d5000000 038400d5 c0000000 00000072 d6000000 00018e80 d4000000 00000001 d2000000 00000000 94000130 fcff0000 b2000024 00000000 d5000000 038401e5 c0000000 0000000f d6000000 0001904c d4000000 00000001 d2000000 00000000 94000130 fcff0000 b2000024 00000000 d5000000 03840219 c0000000 0000001b d6000000 0001908c d4000000 00000001 d2000000 00000000 94000130 fcff0000 b2000024 00000000 d5000000 03840250 c0000000 00000017 d6000000 000190fc d4000000 00000001 d2000000 00000000"
+
 def main():
     while True:
         try:
@@ -45,15 +50,15 @@ def get_option():
             print(f"Invalid input, please enter a number between 1 and {len(list_of_options)}.")
 
 def choose_game():
-    list_of_games = ['HeartGold', 'Platinum', 'Black']
+    list_of_games = ['HeartGold', 'Platinum', 'Black', 'Black 2']
 
     while True:
         for number, option in enumerate(list_of_games, 1):
             print(f"{number}: {option}")
 
         try:
-            choose_game_option = int(input("Number 1-3? ").strip())
-            if 1 <= choose_game_option <=3:
+            choose_game_option = int(input("Number 1-4? ").strip())
+            if 1 <= choose_game_option <=4:
                 if choose_game_option == 1:
                     print(f"You choose {list_of_games[choose_game_option-1]}")
                     choose_code(choose_game_option)
@@ -66,26 +71,32 @@ def choose_game():
                     print(f"You choose {list_of_games[choose_game_option-1]}")
                     choose_code(choose_game_option)
                     break
+                elif choose_game_option == 4:
+                    print(f"You choose {list_of_games[choose_game_option-1]}")
+                    choose_code(choose_game_option)
+                    break
             else:
                 print(f"Invalid number, please choose between 1 and {len(list_of_games)}")
         except ValueError:
-            print("Invalid input, please enter a number between 1 and 3.")
+            print("Invalid input, please enter a number between 1 and 4.")
 
 
 def choose_code(game):
     list_code_hg = ['Steal pokemon', 'Rare candy', 'All balls', 'Max items']
     list_code_platinum = ['Steal pokemon', 'Place holder', 'Place holder 2']
     list_code_black = ['Steal pokemon', 'Exp Share', 'Place holder']
+    list_code_black_2 = ['Steal pokemon', 'Exp Share', 'All items']
 
     list_dict = {
         1: list_code_hg,
         2: list_code_platinum,
-        3: list_code_black
+        3: list_code_black,
+        4: list_code_black_2
     }
 
     game_selected = list_dict[game]
     
-    if 1 <= game <= 3:
+    if 1 <= game <= 4:
         for number, option in enumerate(game_selected, 1):
             print(f"{number}: {option}")
     
@@ -120,6 +131,15 @@ def choose_code(game):
                     code_converter(codes[choose_code - 1], code_conversion_option)
             except ValueError:
                 print(f"Invalid input, please enter a number between 1 and {len(list_code_black)}.")
+        elif game == 4:
+            try:
+                choose_code = int(input(f"Number 1-{len(list_code_black_2)}? ").strip())
+                if 1 <= choose_code <= 3:
+                    codes = [steal_black_2, exp_share_2, all_items_2]
+                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_converter(codes[choose_code - 1], code_conversion_option)
+            except ValueError:
+                print(f"Invalid input, please enter a number between 1 and {len(list_code_black_2)}.")
         else:
             print("Something went wrong.")
 
