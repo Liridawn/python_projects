@@ -1,5 +1,7 @@
 import pyperclip
 
+# First parts are codes for different games along with a descriptive name on the variable
+
 # HearGold-codes
 steal_hg = "9224670a 00002101 1224670a 00002100 d2000000 00000000"
 rare_candy = "94000130 FCFF0000 B2111880 00000000 E0000B74 000000A0 03E70032 00000000 D2000000 00000000"
@@ -26,7 +28,16 @@ def main():
             print(f"An error occurred: {e}")
 
 def get_option():
-    list_of_options = ["New code", "Choose code", "Quit"]
+    list_of_options = ["New code", "Choose code", "Quit"] 
+
+    ''' 
+    List of options for what you'd like, new code as in paste a new code or choose code to choose one of the available variables.
+    Start an enumerate in a while true function to keep it in a loop.
+    Option 1 -> Paste code from internet, then choose how you want the code to be formatted (some games require only spaces whilst some require a dash)
+    Option 2 -> Choose code from the available variables above, after first choosing which game you are playing
+    Option 3 -> Break loop and quit the program.
+    ValueError if you choose something else than option 1-3.
+    '''
 
     while True:
         for number, option in enumerate(list_of_options, 1):
@@ -37,28 +48,32 @@ def get_option():
             if 1 <= choose_code_option <= 3:
                 if choose_code_option == 1:
                     code = input("What's the code? ").strip()
-                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': \n").strip())
                     code_converter(code, code_conversion_option)
                 elif choose_code_option == 2:
                     choose_game()
                 elif choose_code_option == 3:
-                    print("Take care!")
+                    print("\nTake care!\n")
                     exit()
             else:
-                print(f"Invalid number, please choose between 1 and {len(list_of_options)}.")
+                print(f"Invalid number, please choose between 1 and {len(list_of_options)}.") # Addition of len of list_of_options to make it a bit more dynamic
         except ValueError:
-            print(f"Invalid input, please enter a number between 1 and {len(list_of_options)}.")
+            print(f"Invalid input, please enter a number between 1 and {len(list_of_options)}.") 
 
 def choose_game():
-    list_of_games = ['HeartGold', 'Platinum', 'Black', 'Black 2']
+    list_of_games = ['HeartGold', 'Platinum', 'Black', 'Black 2'] # Available games
+
+    '''
+    A list with available games, same as function above but you get to choose which game you are playing, in order to choose the appropriate codes.
+    '''
 
     while True:
         for number, option in enumerate(list_of_games, 1):
             print(f"{number}: {option}")
 
         try:
-            choose_game_option = int(input("Number 1-4? ").strip())
-            if 1 <= choose_game_option <=4:
+            choose_game_option = int(input(f"Number 1-{len(list_of_games)}? ").strip()) # Addition of len of list_of_games to make it a bit more dynamic
+            if 1 <= choose_game_option and choose_game_option <= len(list_of_games):
                 if choose_game_option == 1:
                     print(f"You choose {list_of_games[choose_game_option-1]}")
                     choose_code(choose_game_option)
@@ -96,16 +111,16 @@ def choose_code(game):
 
     game_selected = list_dict[game]
     
-    if 1 <= game <= 4:
+    if 1 <= game and game <= len(list_dict):
         for number, option in enumerate(game_selected, 1):
             print(f"{number}: {option}")
     
         if game == 1:
             try:
                 choose_code = int(input(f"Number 1-{len(list_code_hg)}? ").strip())
-                if 1 <= choose_code <= 4:
+                if 1 <= choose_code and choose_code <= len(list_dict[game]):
                     codes = [steal_hg, rare_candy, all_balls, max_items]
-                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_conversion_option = int(input("Choose conversion type:\n1 for replacing all blanks with '+'.\n2 for replacing every second blank with '+'.\n: ").strip())
                     code_converter(codes[choose_code - 1], code_conversion_option)
                 else:
                     print(f"Invalid number, please choose between 1 and {len(list_code_hg)}.")
@@ -114,9 +129,9 @@ def choose_code(game):
         elif game == 2:
             try:
                 choose_code = int(input(f"Number 1-{len(list_code_platinum)}? ").strip())
-                if 1 <= choose_code <= 3:
+                if 1 <= choose_code and choose_code <= len(list_dict[game]):
                     codes = [steal_platinum]
-                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_conversion_option = int(input("Choose conversion type:\n1 for replacing all blanks with '+'.\n2 for replacing every second blank with '+'.\n: ").strip())
                     code_converter(codes[choose_code - 1], code_conversion_option)
                 else:
                     print(f"Invalid number, please choose between 1 and {len(list_code_platinum)}.")
@@ -125,18 +140,18 @@ def choose_code(game):
         elif game == 3:
             try:
                 choose_code = int(input(f"Number 1-{len(list_code_black)}? ").strip())
-                if 1 <= choose_code <= 3:
+                if 1 <= choose_code and choose_code <= len(list_dict[game]):
                     codes = [steal_black, exp_share]
-                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_conversion_option = int(input("Choose conversion type:\n1 for replacing all blanks with '+'.\n2 for replacing every second blank with '+'.\n: ").strip())
                     code_converter(codes[choose_code - 1], code_conversion_option)
             except ValueError:
                 print(f"Invalid input, please enter a number between 1 and {len(list_code_black)}.")
         elif game == 4:
             try:
                 choose_code = int(input(f"Number 1-{len(list_code_black_2)}? ").strip())
-                if 1 <= choose_code <= 3:
+                if 1 <= choose_code and choose_code <= len(list_dict[game]):
                     codes = [steal_black_2, exp_share_2, all_items_2]
-                    code_conversion_option = int(input("Choose conversion type: 1 for replacing all blanks with '+', 2 for replacing every second blank with '+': ").strip())
+                    code_conversion_option = int(input("Choose conversion type:\n1 for replacing all blanks with '+'.\n2 for replacing every second blank with '+'.\n: ").strip())
                     code_converter(codes[choose_code - 1], code_conversion_option)
             except ValueError:
                 print(f"Invalid input, please enter a number between 1 and {len(list_code_black_2)}.")
@@ -144,6 +159,12 @@ def choose_code(game):
             print("Something went wrong.")
 
 def code_converter(x, conversion_type):
+    '''
+    Because some games require only spaces between the code pieces and some require space and + every other code block, i made this in order to give me an option on how i want
+    the code to be presented.
+    Also added pyperclip so it's copied instantly and I don't have to do it manually.
+    '''
+    
     try:
         if conversion_type == 1:
             new_code = x.replace(" ", "+")
@@ -165,5 +186,5 @@ def code_converter(x, conversion_type):
     except Exception as e:
         print(f"Failed to copy code: {e}")
 
-if __name__ == '__main__':
+if __name__ == '__main__': # Start the program
     main()
